@@ -15,7 +15,7 @@ const addUser = (user) => {
 
 const deleteUser = (userId) =>{
     const userExists = users.some(u => u.id === userId);
-    console.log(userId, userExists)
+
     if (!userExists) return false;
     users = users.filter(u => u.id !== userId);
 

@@ -15,7 +15,7 @@ const getUserbyId = (req, res) =>{
 const addUser = (req, res) =>{
     const { id, name } = req.body;
 
-    if (!id||!name) return res.status(404).json({ mesage:"id and name required" });
+    if (!id||!name) return res.status(400).json({ mesage:"id and name required" });
 
     const user = usersService.addUser({id, name});
     return res.status(201).json(user);
