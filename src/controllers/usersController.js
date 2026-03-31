@@ -1,4 +1,3 @@
-const { type } = require("node:os");
 const usersService = require("../services/usersServiceDB");
 
 const getAllUsers = async (req, res) =>{
