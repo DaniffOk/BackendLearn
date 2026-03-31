@@ -1,33 +1,36 @@
-const usersService = require("../services/usersService");
+const { type } = require("node:os");
+const usersService = require("../services/usersServiceDB");
 
-const getAllUsers = (req, res) =>{
-    const users = usersService.findAllUsers();
-    res.json(users);
+const getAllUsers = async (req, res) =>{
+    const users = await usersService.findAllUsers();
+    return res.json(users);
 };
 
-const getUserbyId = (req, res) =>{
+const getUserbyId = async (req, res) =>{
     const userId = Number(req.params.userId);
-    const user = usersService.findUserById(userId);
-    if (!user) return res.status(404).json({ mesage: "user not found" });
-    res.json(user);
+    const user = await usersService.findUserById(userId);
+
+    if (!user) return res.status(404).json({ message: "user not found" });
+    
+    return res.json(user);
 };
 
-const addUser = (req, res) =>{
-    const { id, name } = req.body;
+const addUser = async (req, res) =>{
+    const { name, age } = req.body;
 
-    if (!id||!name) return res.status(400).json({ mesage:"id and name required" });
+    if (!age||!name) return res.status(400).json({ mesage:"age and name required" });
 
-    const user = usersService.addUser({id, name});
+    const user = await usersService.addUser({name, age});
     return res.status(201).json(user);
 };
 
-const deleteUser = (req, res) =>{
+const deleteUser = async (req, res) =>{
     const userId = Number(req.params.userId);
 
-    const exist = usersService.deleteUser(userId);
-    if (!exist) return res.status(404).json({ mesage: "user not found" });
+    const user = await usersService.deleteUser(userId);
+    if (!user) return res.status(404).json({ mesage: "user not found" });
 
-    res.sendStatus(200);
+    return res.status(200).json(user);
 }
 
 module.exports = { getAllUsers, getUserbyId, addUser, deleteUser};
