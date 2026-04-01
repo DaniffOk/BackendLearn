@@ -5,7 +5,7 @@ GET {{base}}/users HTTP/1.1
 
 ###
 
-GET {{base}}/users/2
+GET {{base}}/users/5
 
 ###
 
