@@ -19,4 +19,4 @@ Content-Type: application/json
 
 ###
 
-DELETE {{base}}/users/6 HTTP/1.1
+DELETE {{base}}/users/8 HTTP/1.1

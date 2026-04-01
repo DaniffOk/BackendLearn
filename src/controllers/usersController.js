@@ -1,5 +1,5 @@
 const usersService = require("../services/usersServiceDB");
-const asyncHandler = require("../errorHandler")
+const asyncHandler = require("../errorHandler");
 
 const getAllUsers = asyncHandler( async(req, res) =>{
     const users = await usersService.findAllUsers();
@@ -19,6 +19,8 @@ const addUser = asyncHandler( async(req, res) =>{
     const { name, age } = req.body;
 
     if (!age||!name) return res.status(400).json({ mesage:"age and name required" });
+    if ( typeof(age) != "number" || age<=0 ) return res.status(400).json({ message:"Wrong age input" });
+    if ( typeof(name) != "string" || name.length <= 1) return res.status(400).json({ message:"Wrong name input" });
 
     const user = await usersService.addUser({name, age});
     return res.status(201).json(user);
