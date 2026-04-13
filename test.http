@@ -13,10 +13,11 @@ POST {{base}}/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"Name",
-    "age":18
+    "name":"Plazeba",
+    "email":"dota2gembitlox67@gmail.com",
+    "password":"ppfknehodjy"
 }
 
 ###
 
-DELETE {{base}}/users/8 HTTP/1.1
+DELETE {{base}}/users/3 HTTP/1.1
